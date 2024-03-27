@@ -1,3 +1,11 @@
+<?php 
+
+require 'config.php';
+session_start();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +53,7 @@
               <a href="./index.html" class=" text-white hover:bg-gray-700 rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
               <a href="./List_Produk.html" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Product</a>
               <a href="./Dashboard.html" class="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
-              <a href="./login.html" class="bg-red-600 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</a>
+              <a href="logout.php" class="bg-red-600 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</a>
 
               </div>
                      
@@ -169,7 +177,7 @@
  <!-- main content page -->
  <div class="w-full p-4 bg-gray-200">
 
-  <h2 class="font-light text-3xl">Selamat Datang Admin!</h2>
+  <h2 class="font-light text-3xl">Selamat Datang <?= $_SESSION['name']; ?>!</h2>
 
 </div>
 </main>

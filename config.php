@@ -27,5 +27,45 @@ $error_message = '';
 $success_message = '';
 
 
+function ambilData($data){
+
+    global $conn;
+    $hasil = mysqli_query($conn,$data);
+    $penammpung = [];
+
+    while ( $perData = mysqli_fetch_assoc($hasil) ){
+
+        $penammpung[] = $perData;
+
+    }
+     return $penammpung;
+
+}
+
+function tambahBahan($data){
+        global $conn;
+    
+        // tambah data 
+        $tanggal = date("Y/m/d");
+        $jenis = $data['jenis'];
+        $nama_persediaan = $data['nama_persediaan'];
+        $jumlah_masuk = $data['jumlah_masuk'];
+        $jumlah_keluar = $data['jumlah_keluar'];
+        $stok = $data['stok'];
+
+    
+        // query data
+        mysqli_query($conn, "INSERT INTO persediaan VALUES
+        ('', '$tanggal', '$jenis', '$nama_persediaan', '$jumlah_masuk', '$jumlah_keluar', '$stok')
+        ");
+    
+        $feedback = mysqli_affected_rows($conn);
+    
+        return $feedback;
+    
+    
+    }
+
+
 
 ?>

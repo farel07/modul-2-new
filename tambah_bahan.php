@@ -1,3 +1,36 @@
+<?php 
+require 'config.php';
+session_start();
+
+if(isset($_POST['add_product'])){
+
+  if(tambahBahan($_POST) > 0){
+
+    $_SESSION['flash_message'] = '<div class="p-4 mb-4 text-sm text-grey-800 rounded-lg bg-grey-50 dark:bg-green-200            dark:text-grey-400" role="alert">
+    <span class="font-medium">Data berhasil ditambahkan</span> </div>';
+
+  } else {
+
+    echo "<script>
+        alert('Data gagal ditambahkan')
+    </script>";
+    echo mysqli_error($conn);
+
+  }
+
+  echo "
+    <script>
+        document.location.href = 'Data_Bahan.php';
+    </script>
+    ";
+
+}
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,49 +129,51 @@
   
 <form action="" method="post" enctype="multipart/form-data" class="space-y-4">
 
+  <!-- id product -->
+<label for="product_id" class="sr-only">Jenis</label>
+
+<div class="relative">
+  <input required="" type="text" name="jenis" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan Jenis">
+</div>
 
   <label for="product_name" class="sr-only">Nama Bahan</label>
 
   <div class="relative">
-    <input required="" type="text" name="product_name" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan nama Bahan">
+    <input required="" type="text" name="nama_persediaan" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan nama Bahan">
   </div>
 
-  <!-- id product -->
-<label for="product_id" class="sr-only">ID Bahan</label>
+<!-- jumlah masuk -->
+<label for="jumlah_masuk" class="sr-only">Jumlah Masuk</label>
 
 <div class="relative">
-  <input required="" type="text" name="product_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan ID Bahan">
+  <input required="" type="number" name="jumlah_masuk" min="1" max="" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah masuk">
 </div>
 
-<!-- stock product -->
-<label for="product_stock" class="sr-only">Jumlah Masuk</label>
+<!-- jumlah keluar -->
+<label for="jumlah_keluar" class="sr-only">Jumlah Keluar</label>
 
 <div class="relative">
-  <input required="" type="number" name="product_stock" min="1" max="" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah masuk">
+  <input required="" type="number" name="jumlah_keluar" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah keluar">
 </div>
 
-<!-- price product -->
-<label for="product_price" class="sr-only">Jumlah Keluar</label>
+<!-- stok -->
+<label for="stok" class="sr-only">Stok</label>
 
 <div class="relative">
-  <input required="" type="number" name="product_price" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah keluar">
+  <input required="" type="number" name="stok" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah stok">
 </div>
 
-<!-- description product -->
-<label for="product_description" class="sr-only">Description</label>
-
-<div class="relative">
-  <textarea required="" name="product_description" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan deskripsi"></textarea>
-</div>
 
 <!-- submit -->
 <div class="flex items-center justify-start">
 <input type="submit" name="add_product" value="Tambah Bahan" class="rounded-lg bg-purple-700 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer mr-4">
 
+</form>
+
 <button  class="rounded-lg bg-gray-400 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer" onclick="redirectToPage()"> Cancel </button>
 <script>
     function redirectToPage() {
-                    window.location.href = "./Data_Bahan.html";
+                    window.location.href = "Data_Bahan.php";
                 }
 </script>
 
@@ -146,7 +181,6 @@
 
 
 
-</form>
 
 </div>
 

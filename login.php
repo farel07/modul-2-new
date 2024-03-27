@@ -1,8 +1,14 @@
 <?php
 require 'config.php';
+session_start();
+
+if ( isset($_SESSION["login"]) ){
+  header("Location: dashboard.php");
+}
 
 if(isset($_POST["submit"])){
   
+  $error_message = '';
 
   $username = $_POST['username'];
   $password = $_POST['password'];
@@ -11,29 +17,25 @@ if(isset($_POST["submit"])){
   $result = mysqli_query($conn, $query);
   $akun = mysqli_fetch_assoc($result);
   
-  if(!$akun){
-    echo "pass atau usernm salah";
-    die;
-  }
+  if($akun){
 
-  echo "ads";
-  // verif pass
-  if (password_verify($password, $akun['password'])) { 
+    if (password_verify($password, $akun['password'])) { 
      
-    header('Location: dashboard.html');
-    die;
- 
-  } else { 
- 
-    echo 'Password kamu salah, silakan coba lagi..'; 
- 
+      $_SESSION['login'] = true;
+      $_SESSION['name'] = $akun['name'];
+
+      header('Location: dashboard.php');
+      die;
+   
+    } 
   } 
 
+    $error_message = 'username atau password salah';
+  
 }
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +55,21 @@ if(isset($_POST["submit"])){
       <h1 class="font-bold text-center text-2xl mb-5"><img src="CareSelf.png" alt="" srcset=""></h1>  
       <div class="bg-purple-700 shadow w-full rounded-lg divide-y divide-purple-700">
         <div class="px-5 py-7">
+
+
+        <?php if($error_message != '') { ?>
+
+          <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium"><?php echo $error_message; ?></span>
+    </div>
+  </div>
+
+          <?php } ?>
 
         <form action="" method="post">
 
