@@ -63,9 +63,39 @@ function tambahBahan($data){
     
         return $feedback;
     
-    
     }
 
 
+    function editBahan($data, $id){
+        global $conn;
+        // tambah data 
+        $tanggal = date("Y/m/d");
+        $jenis = $data['jenis'];
+        $nama_persediaan = $data['nama_persediaan'];
+        $jumlah_masuk = $data['jumlah_masuk'];
+        $jumlah_keluar = $data['jumlah_keluar'];
+        $stok = $data['stok'];
+
+        mysqli_query($conn, "UPDATE persediaan SET
+            jenis = '$jenis',
+            nama_persediaan = '$nama_persediaan',
+            jumlah_masuk = '$jumlah_masuk',
+            jumlah_keluar = '$jumlah_keluar',
+            stok = '$stok' 
+            WHERE id = $id;
+        ");
+
+        $feedback = mysqli_affected_rows($conn);
+            
+        return $feedback;
+    }
+
+    function hapusBahan($id){
+
+        global $conn;
+        mysqli_query($conn,"DELETE FROM persediaan WHERE id = $id");
+        return mysqli_affected_rows($conn);
+    
+    }
 
 ?>

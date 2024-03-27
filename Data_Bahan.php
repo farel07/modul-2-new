@@ -3,6 +3,11 @@
 require 'config.php';
 session_start();
 
+if(!isset($_SESSION['login'])){
+  header('Location: login.php');
+   die;
+}
+
 $data = ambilData("SELECT * FROM persediaan");
 
 ?>
@@ -236,8 +241,8 @@ $data = ambilData("SELECT * FROM persediaan");
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $d['jumlah_keluar']; ?></td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $d['stok']; ?></td>
                     <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
-                      <a href="#" class="text-black hover:text-yellow-500">Edit<span class="sr-only">, Najib Ahmed</span></a>
-                      <a href="#" class="text-black hover:text-red-500">Delete<span class="sr-only">, Najib Ahmed</span></a>
+                      <a href="editDataBahan.php?id=<?= $d['id'] ?>" class="text-black hover:text-yellow-500">Edit<span class="sr-only">, Najib Ahmed</span></a>
+                      <a href="hapusBahan.php?id=<?= $d['id'] ?>" class="text-black hover:text-red-500">Delete<span class="sr-only">, Najib Ahmed</span></a>
                     </td>
                   </tr>
 
