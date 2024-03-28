@@ -1,3 +1,41 @@
+<?php 
+
+require 'config.php';
+session_start();
+
+if(!isset($_SESSION['login'])){
+     header('Location: login.php');
+      die;
+ }
+
+ if(isset($_POST['submit'])){
+  
+  if(tambahProduk($_POST) > 0){
+
+    $_SESSION['flash_message'] = '<div class="p-4 mb-4 text-sm text-grey-800 rounded-lg bg-grey-50 dark:bg-green-200            dark:text-grey-400" role="alert">
+    <span class="font-medium">Data berhasil ditambahkan</span> </div>';
+
+  } else {
+
+    echo "<script>
+        alert('Data gagal ditambahkan')
+    </script>";
+    echo mysqli_error($conn);
+
+  }
+
+  echo "
+    <script>
+        document.location.href = 'data_product.php';
+    </script>
+    ";
+
+ }
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,47 +138,47 @@
   <label for="product_name" class="sr-only">Nama Produk</label>
 
   <div class="relative">
-    <input required="" type="text" name="product_name" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan nama produk">
+    <input required="" type="text" name="nama_produk" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan nama produk">
   </div>
 
   <!-- id product -->
-<label for="product_id" class="sr-only">ID Produk</label>
+<label for="product_id" class="sr-only">Harga</label>
 
 <div class="relative">
-  <input required="" type="text" name="product_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan ID Produk">
+  <input required="" type="text" name="harga" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan harga produk">
 </div>
 
 <!-- stock product -->
 <label for="product_stock" class="sr-only">Stock</label>
 
 <div class="relative">
-  <input required="" type="number" name="product_stock" min="1" max="" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah stok">
+  <input required="" type="number" name="stok" min="1" max="" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah stok">
 </div>
 
 <!-- price product -->
-<label for="product_price" class="sr-only">Price</label>
+<label for="product_price" class="sr-only">Produk Terjual</label>
 
 <div class="relative">
-  <input required="" type="number" name="product_price" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan harga">
+  <input required="" type="number" name="produk_terjual" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan produk terjual">
 </div>
 
 <!-- description product -->
 <label for="product_description" class="sr-only">Description</label>
 
 <div class="relative">
-  <textarea required="" name="product_description" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan deskripsi"></textarea>
+  <textarea required="" name="deskripsi" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan deskripsi"></textarea>
 </div>
 
 <!-- image product -->
-<label for="product_image" class="sr-only">Image</label>
+<!-- <label for="product_image" class="sr-only">Image</label>
 
 <div class="relative">
   <input required="" type="file" name="product_image" accept="image/png, image/gif, image/jpeg" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan gambar">
-</div>
+</div> -->
 
 <!-- submit -->
 <div class="flex items-center justify-start">
-    <input type="submit" name="add_product" value="Tambah Bahan" class="rounded-lg bg-purple-700 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer mr-4">
+    <input type="submit" name="submit" value="Tambah Produk" class="rounded-lg bg-purple-700 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer mr-4">
     
     <button  class="rounded-lg bg-gray-400 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer" onclick="redirectToPage()"> Cancel </button>
     <script>

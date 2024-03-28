@@ -64,6 +64,30 @@ function tambahBahan($data){
         return $feedback;
     
     }
+    
+    function tambahProduk($data){
+
+        global $conn;
+    
+        // tambah data 
+        $tanggal = date("Y/m/d");
+        $nama_produk = $data['nama_produk'];
+        $harga = $data['harga'];
+        $stok = $data['stok'];
+        $produk_terjual = $data['produk_terjual'];
+        $deskripsi = $data['deskripsi'];
+
+    
+        // query data
+        mysqli_query($conn, "INSERT INTO produk VALUES
+        ('', '$tanggal', '$nama_produk', '$harga', '$stok', '$produk_terjual', '$deskripsi', '')
+        ");
+    
+        $feedback = mysqli_affected_rows($conn);
+    
+        return $feedback;
+
+    }
 
 
     function editBahan($data, $id){
@@ -90,10 +114,43 @@ function tambahBahan($data){
         return $feedback;
     }
 
+    function editProduk($data, $id){
+        global $conn;
+    
+        // tambah data 
+        $nama_produk = $data['nama_produk'];
+        $harga = $data['harga'];
+        $stok = $data['stok'];
+        $produk_terjual = $data['produk_terjual'];
+        $deskripsi = $data['deskripsi'];
+
+    
+        mysqli_query($conn, "UPDATE produk SET
+            nama_produk = '$nama_produk',
+            harga = '$harga',
+            stok = '$stok',
+            produk_terjual = '$produk_terjual',
+            deskripsi = '$deskripsi' 
+            WHERE id = $id;
+        ");
+    
+        $feedback = mysqli_affected_rows($conn);
+    
+        return $feedback;
+    }
+
     function hapusBahan($id){
 
         global $conn;
         mysqli_query($conn,"DELETE FROM persediaan WHERE id = $id");
+        return mysqli_affected_rows($conn);
+    
+    }
+
+    function hapusProduk($id){
+
+        global $conn;
+        mysqli_query($conn,"DELETE FROM produk WHERE id = $id");
         return mysqli_affected_rows($conn);
     
     }
