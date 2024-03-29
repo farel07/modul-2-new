@@ -1,3 +1,19 @@
+<?php 
+
+require 'config.php';
+session_start();
+
+if(!isset($_SESSION['login'])){
+     header('Location: login.php');
+      die;
+ }
+
+ $produksi = ambilData("SELECT produksi.id, produksi.produk_id, produksi.tanggal, produksi.jumlah_bahan, produksi.jumlah_produksi, produk.nama_produk, persediaan.nama_persediaan FROM ((produksi INNER JOIN produk ON produksi.produk_id = produk.id) INNER JOIN persediaan ON produksi.bahan_id = persediaan.id);");
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -172,63 +188,17 @@
               </thead>
           
               <tbody class="divide-y divide-gray-200 text-center">
-                        <tr>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900">2024-03-06</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">Tahu</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">1</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">1</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">1</td>
+
+              <?php foreach($produksi as $p) : ?>
+                <tr>
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-900"><?= $p['tanggal']; ?></td>
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?= $p['nama_persediaan']; ?></td>
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?= $p['jumlah_bahan']; ?></td>
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?= $p['nama_produk']; ?></td>
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?= $p['jumlah_produksi']; ?></td>
                   <td class="whitespace-nowrap px-4 py-2"></td>
                 </tr>
-                        <tr>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900">2024-03-04</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">bahan sepatu renang</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">1</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">111111111</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">1</td>
-                  <td class="whitespace-nowrap px-4 py-2"></td>
-                </tr>
-                        <tr>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900">2024-03-05</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">BHVYT</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">66</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">99</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">66</td>
-                  <td class="whitespace-nowrap px-4 py-2"></td>
-                </tr>
-                        <tr>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900">2024-03-06</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">gg</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">1</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">A</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">1</td>
-                  <td class="whitespace-nowrap px-4 py-2"></td>
-                </tr>
-                        <tr>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900">2024-03-11</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">addas</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">10</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">adis</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">10</td>
-                  <td class="whitespace-nowrap px-4 py-2"></td>
-                </tr>
-                        <tr>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900">2024-03-09</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">metal</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">1</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">air</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">1</td>
-                  <td class="whitespace-nowrap px-4 py-2"></td>
-                </tr>
-                        <tr>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900">2024-03-05</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">Tiara</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">3</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">Andini</td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">3</td>
-                  <td class="whitespace-nowrap px-4 py-2"></td>
-                </tr>
-    
+                <?php endforeach; ?>
 
         </div>
 

@@ -1,3 +1,44 @@
+<?php 
+
+require 'config.php';
+session_start();
+
+if(!isset($_SESSION['login'])){
+     header('Location: login.php');
+      die;
+ }
+
+$bahan = ambilData("SELECT * FROM persediaan");
+$produk = ambilData("SELECT * FROM produk");
+
+if(isset($_POST['submit'])){
+
+
+  if(tambahProduksi($_POST) > 0){
+
+    $_SESSION['flash_message'] = '<div class="p-4 mb-4 text-sm text-grey-800 rounded-lg bg-grey-50 dark:bg-green-200            dark:text-grey-400" role="alert">
+    <span class="font-medium">Data berhasil ditambahkan</span> </div>';
+
+  } else {
+
+    echo "<script>
+        alert('Data gagal ditambahkan')
+    </script>";
+    echo mysqli_error($conn);
+
+  }
+
+  echo "
+    <script>
+        document.location.href = 'data_produksi.php';
+    </script>
+    ";
+
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,29 +138,41 @@
 <form action="" method="post" enctype="multipart/form-data" class="space-y-4">
 
 
-  <label for="product_name" class="sr-only">Nama Produk</label>
+  <label for="countries" class="sr-only">Select an option</label>
+  <select id="countries" name="bahan_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
+    <option selected>Choose product</option>
+    <?php foreach($produk as $p): ?>
+    <option value="<?= $p['id'] ?>"><?= $p['nama_produk']; ?></option>
+    <?php endforeach; ?>
+  </select>
 
-  <div class="relative">
-    <input required="" type="text" name="product_name" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan nama Produk">
-  </div>
-
-  <!-- id product -->
-<label for="product_id" class="sr-only">ID Produk</label>
-
-<div class="relative">
-  <input required="" type="text" name="product_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan ID Produk">
-</div>
-
-<!-- stock product -->
+  <!-- stock product -->
 <label for="product_stock" class="sr-only">Jumlah Produksi</label>
 
 <div class="relative">
-  <input required="" type="number" name="product_stock" min="1" max="" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah produksi">
+  <input required="" type="number" name="jumlah_produksi" min="1" max="" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah produksi">
 </div>
+
+  <label for="countries" class="sr-only">Select an option</label>
+  <select id="countries" name="produk_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
+    <option selected>Choose bahan</option>
+    <?php foreach($bahan as $b): ?>
+    <option value="<?= $b['id'] ?>"><?= $b['nama_persediaan']; ?></option>
+    <?php endforeach; ?>
+  </select>
+
+    <!-- stock product -->
+<label for="product_stock" class="sr-only">Jumlah Bahan</label>
+
+<div class="relative">
+  <input required="" type="number" name="jumlah_bahan" min="1" max="" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah bahan">
+</div>
+
+
 
 <!-- submit -->
 <div class="flex items-center justify-start">
-    <input type="submit" name="add_product" value="Tambah Bahan" class="rounded-lg bg-purple-700 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer mr-4">
+    <input type="submit" name="submit" value="Tambah Produksi" class="rounded-lg bg-purple-700 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer mr-4">
     
     <button  class="rounded-lg bg-gray-400 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer" onclick="redirectToPage()"> Cancel </button>
     <script>
