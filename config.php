@@ -23,6 +23,21 @@ if($conn->connect_error){
 
 //   $conn->close();
 
+function registrasiAkun($data){
+    global $conn;
+
+    $name = $data['name'];
+    $username = $data['username'];
+    $email = $data['email'];
+    $password = password_hash($data['password'], PASSWORD_DEFAULT);
+
+    mysqli_query($conn, "INSERT INTO account VALUES('', '$name', '$username', '$email', '$password', '1')");
+
+    $feedback = mysqli_affected_rows($conn);
+    
+        return $feedback;
+}
+
 $error_message = '';
 $success_message = '';
 

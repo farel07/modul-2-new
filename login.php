@@ -66,10 +66,25 @@ if(isset($_POST["submit"])){
     <span class="sr-only">Info</span>
     <div>
       <span class="font-medium"><?php echo $error_message; ?></span>
+      
     </div>
   </div>
 
           <?php } ?>
+
+          <?php 
+      
+      if(isset($_SESSION['flash_message'])){
+
+
+          echo $_SESSION['flash_message'];
+
+          unset($_SESSION['flash_message']);
+        }
+
+      
+      ?>
+
 
         <form action="" method="post">
 
