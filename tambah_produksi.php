@@ -59,7 +59,7 @@ if(isset($_POST['submit'])){
     <!-- <header class="flex w-full items-center justify-between p-8  bg-gray-100 p-2" >
         // logo 
         <div class="flex items-center justify-center">
-            <a href="./index.html">
+            <a href="./index.php">
             <img class="h-6" src="CareSelf.png" >
         </a>
         </div>
@@ -77,13 +77,13 @@ if(isset($_POST['submit'])){
 
             <div class="flex flex-1 ">
               <div class="flex flex-shrink-0">
-                <img class="h-8 w-auto" src="CareSelf.png" alt="Your Company" onclick="window.location.href = 'index.html';">
+                <img class="h-8 w-auto" src="CareSelf.png" alt="Your Company" onclick="window.location.href = 'index.php';">
               </div>
             </div>
 
             <div class="flex flex-2 space-x-4">
    
-              <a href="./index.html" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
+              <a href="./index.php" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
               <a href="./List_Produk.html" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Product</a>
               <a href="./Dashboard.html" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
 

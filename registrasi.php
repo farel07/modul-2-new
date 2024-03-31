@@ -2,37 +2,37 @@
 require 'config.php';
 session_start();
 
-if ( isset($_SESSION["login"]) ){
-  header("Location: dashboard.php");
-}
+// if ( isset($_SESSION["login"]) ){
+//   header("Location: dashboard.php");
+// }
 
-if(isset($_POST["submit"])){
+// if(isset($_POST["submit"])){
   
-  $error_message = '';
+//   $error_message = '';
 
-  $username = $_POST['username'];
-  $password = $_POST['password'];
+//   $username = $_POST['username'];
+//   $password = $_POST['password'];
 
-  $query = "SELECT * FROM account WHERE username = '$username';";
-  $result = mysqli_query($conn, $query);
-  $akun = mysqli_fetch_assoc($result);
+//   $query = "SELECT * FROM account WHERE username = '$username';";
+//   $result = mysqli_query($conn, $query);
+//   $akun = mysqli_fetch_assoc($result);
   
-  if($akun){
+//   if($akun){
 
-    if (password_verify($password, $akun['password'])) { 
+//     if (password_verify($password, $akun['password'])) { 
      
-      $_SESSION['login'] = true;
-      $_SESSION['name'] = $akun['name'];
+//       $_SESSION['login'] = true;
+//       $_SESSION['name'] = $akun['name'];
 
-      header('Location: dashboard.php');
-      die;
+//       header('Location: dashboard.php');
+//       die;
    
-    } 
-  } 
+//     } 
+//   } 
 
-    $error_message = 'username atau password salah';
+//     $error_message = 'username atau password salah';
   
-}
+// }
 
 
 ?>
@@ -72,13 +72,17 @@ if(isset($_POST["submit"])){
           <?php } ?>
 
         <form action="" method="post">
+        <label class="font-semibold text-sm text-black pb-1 block">Name</label>
+          <input type="text" name="name" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+          <label class="font-semibold text-sm text-black pb-1 block">Email</label>
+          <input type="email" name="email" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
           <label class="font-semibold text-sm text-black pb-1 block">Username</label>
           <input type="text" name="username" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
           <label class="font-semibold text-sm text-black pb-1 block">Password</label>
           <input type="text" name="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
           <button type="submit" name="submit" class="transition duration-200 bg-blue-300 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-black w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-              <span class="inline-block mr-2">=</span>Login
+              <span class="inline-block mr-2">=</span>Create
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 inline-block">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -90,17 +94,10 @@ if(isset($_POST["submit"])){
         </div>
         <div class="p-5">
             <div class="grid">
-                <button type="text" class="transition duration-200 backdrop-brightness-50 text-blue-300 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block">Welcome to CareSelf</text>
+                <button type="text" class="transition duration-200 backdrop-brightness-50 text-blue-300 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block">Login</text>
             </div>
-            <div style="padding: 20px;">
-            <div class="text-center">
-                <a class="inline-block right-0 align-baseline font-light text-sm text-500 hover:text-blue-500" href="./registrasi.php">
-                    Create Your Account!
-                </a>
-        </div>
-        </div>
-      </div>
-      <div class="py-2">
+    </div>
+    <div class="py-2">
           <div class="grid grid-cols-2 gap-1">
             <div class="text-center sm:text-left whitespace-nowrap">
               <button class="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-neutral-950 hover:bg-gray-200 focus:outline-none focus:bg-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset" onclick="redirectToPage()">
@@ -109,6 +106,7 @@ if(isset($_POST["submit"])){
                   </svg>
                   <span class="inline-block ml-1">Back to home</span>
               </button>
+              
               <script>
                 function redirectToPage() {
                     window.location.href = "index.php";
@@ -117,6 +115,5 @@ if(isset($_POST["submit"])){
             </div>
           </div>
         </div>
-    </div>
   </div>
 <body>
