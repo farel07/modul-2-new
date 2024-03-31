@@ -83,7 +83,6 @@ if(!isset($_SESSION['login'])){
               <a href="./index.html" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
               <a href="./List_Produk.html" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Product</a>
               <a href="./Dashboard.html" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
-              <a href="./login.html" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Login</a>
 
               </div>
                      
@@ -183,7 +182,7 @@ if(!isset($_SESSION['login'])){
     <button  class="rounded-lg bg-gray-400 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer" onclick="redirectToPage()"> Cancel </button>
     <script>
         function redirectToPage() {
-                        window.location.href = "./data_product.html";
+                        window.location.href = "./data_product.php";
                     }
     </script>
     
