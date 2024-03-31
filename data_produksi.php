@@ -33,7 +33,7 @@ if(!isset($_SESSION['login'])){
     <!-- <header class="flex w-full items-center justify-between p-8  bg-gray-100 p-2" >
         // logo 
         <div class="flex items-center justify-center">
-            <a href="./index.html">
+            <a href="./index.php">
             <img class="h-6" src="CareSelf.png" >
         </a>
         </div>
@@ -51,13 +51,13 @@ if(!isset($_SESSION['login'])){
 
             <div class="flex flex-1 ">
               <div class="flex flex-shrink-0">
-                <img class="h-8 w-auto" src="CareSelf.png" alt="Your Company" onclick="window.location.href = 'index.html';">
+                <img class="h-8 w-auto" src="CareSelf.png" alt="Your Company" onclick="window.location.href = 'index.php';">
               </div>
             </div>
 
             <div class="flex flex-2 space-x-4">
    
-              <a href="./index.html" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
+              <a href="./index.php" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
               <a href="./List_Produk.html" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Product</a>
               <a href="./Dashboard.html" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
               <a href="logout.php" class="bg-red-600 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</a>
@@ -131,7 +131,7 @@ if(!isset($_SESSION['login'])){
               </button>
 
               <div x-show="open" class="bg-gray-100">
-                  <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="Data_Bahan.php">Data Bahan</a>
+                  <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="data_bahan.php">Data Bahan</a>
                   <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="./data_produksi.php">Data Hasil Produksi</a>
               </div>
           </div>
@@ -181,8 +181,8 @@ if(!isset($_SESSION['login'])){
 
                   <div x-show="open" class="bg-gray-100">
                       <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="data_product.php">Data Produk</a>
-                      <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="./data_pesanan.php">Data Pesanan</a>
-                      <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="laporan_penjualan.php">Laporan Penjualan</a>
+                      <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="./data_pesanan.html">Data Pesanan</a>
+                      <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="laporan_penjualan.html">Laporan Penjualan</a>
                   </div>
                   
               </div>
