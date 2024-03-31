@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Mar 2024 pada 15.25
+-- Waktu pembuatan: 31 Mar 2024 pada 17.35
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.1.25
 
@@ -32,15 +32,18 @@ CREATE TABLE `account` (
   `name` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `account`
 --
 
-INSERT INTO `account` (`id`, `name`, `username`, `email`, `password`) VALUES
-(5, 'admin', 'admin', 'admin@gmail.com', '$2y$10$oa5JzeaWLygRQXyL5zk2peaxjFWvMH7ovNkugaxvItbau05ilLzAu');
+INSERT INTO `account` (`id`, `name`, `username`, `email`, `password`, `role_id`) VALUES
+(5, 'admin', 'admin', 'admin@gmail.com', '$2y$10$oa5JzeaWLygRQXyL5zk2peaxjFWvMH7ovNkugaxvItbau05ilLzAu', 1),
+(10, 'admin', 'admin2', 'farrqeel@gmail.com', '$2y$10$AW1oDknHStzNkuSyaTFdjee5tYFugO3yLowrK8D4weNpOFeoL0VaG', 1),
+(11, 'admin', 'admin3', 'farrel.pok@gmail.com', '$2y$10$7OA6WIxaD.uqdmWgh7fRwulhYLk0mmPvFhtKsDQlhwxNOIltoSppe', 1);
 
 -- --------------------------------------------------------
 
@@ -108,7 +111,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `tanggal`, `nama_produk`, `harga`, `stok`, `produk_terjual`, `deskripsi`, `foto`) VALUES
-(3, '2024-03-28', 'Shampoo', 10000, 164, 1, '1', '');
+(3, '2024-03-28', 'Shampoo', 10000, 170, 1, '1', '');
 
 -- --------------------------------------------------------
 
@@ -130,7 +133,8 @@ CREATE TABLE `produksi` (
 --
 
 INSERT INTO `produksi` (`id`, `produk_id`, `tanggal`, `bahan_id`, `jumlah_bahan`, `jumlah_produksi`) VALUES
-(10, 3, '2024-03-29', 3, 15, 20);
+(10, 3, '2024-03-29', 3, 15, 20),
+(11, 3, '2024-03-30', 3, 1, 6);
 
 --
 -- Indexes for dumped tables
@@ -174,7 +178,7 @@ ALTER TABLE `produksi`
 -- AUTO_INCREMENT untuk tabel `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `customer`
@@ -198,7 +202,7 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT untuk tabel `produksi`
 --
 ALTER TABLE `produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
