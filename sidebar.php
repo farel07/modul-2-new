@@ -1,72 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <title>Dashboard</title>
-</head>
-<body>
-<!--Dashboard-->
-<script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
-
-<!-- page -->
-<main class="min-h-screen w-full bg-white text-gray-700" x-data="layout">
-    <!-- header page -->
-    <!-- <header class="flex w-full items-center justify-between p-8  bg-gray-100 p-2" >
-        // logo 
-        <div class="flex items-center justify-center">
-            <a href="./index.php">
-            <img class="h-6" src="CareSelf.png" >
-        </a>
-        </div>
-
-        
-        
-
-
-
-    </header> -->
-
-    <nav class="bg-purple-700">
-        <div class="max-w-7xl">
-          <div class=" flex h-16 items-center">
-
-            <div class="flex flex-1 ">
-              <div class="flex flex-shrink-0">
-                <img class="h-8 w-auto" src="CareSelf.png" alt="Your Company" onclick="window.location.href = 'index.php';">
-              </div>
-            </div>
-
-            <div class="flex flex-2 space-x-4">
-   
-              <a href="./index.php" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
-              <a href="./list_produk.php" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Product</a>
-              <a href="./dashboard.php" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
-              <a href="./login.php" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Login</a>
-
-              </div>
-                     
-                </div>
-              </div>
-        </div>
-      </nav>
-    <div class="flex">
-        <!-- aside -->
-        <!-- tailwind.config.js -->
-<!-- component -->
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
-    <div class="flex flex-col sm:flex-row sm:justify-around">
-        <div class="w-64 h-screen bg-white">
-            
-        <nav class="mt-10">
+<nav class="mt-10">
                 <div x-data="{ open: false }">
                     <button class="w-full flex justify-between items-center py-3 px-6 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                         <span class="flex items-center">
-                            <a href="login.php"
+                            <a href="Dashboard.php"
                     class="flex items-center">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 11H5M19 11C20.1046 11 21 11.8954 21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V13C3 11.8954 3.89543 11 5 11M19 11V9C19 7.89543 18.1046 7 17 7M5 11V9C5 7.89543 5.89543 7 7 7M7 7V5C7 3.89543 7.89543 3 9 3H15C16.1046 3 17 3.89543 17 5V7M7 7H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -92,14 +28,10 @@
                     </button>
 
                     <div x-show="open" class="bg-gray-100">
-                        <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="data_bahan.php">Data Bahan</a>
+                        <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="Data_Bahan.php">Data Bahan</a>
                         <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="./data_produksi.php">Data Hasil Produksi</a>
                     </div>
                 </div>
-
-
-                
-
 
                 <div x-data="{ open: false }">
                   <button @click="open = !open" class="w-full flex justify-between items-center py-3 px-6 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
@@ -122,6 +54,7 @@
 
                   <div x-show="open" class="bg-gray-100">
                       <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="laporan_produksi.php">Laporan Produksi</a>
+                     
                   </div>
               </div>
 
@@ -148,92 +81,14 @@
                       <div x-show="open" class="bg-gray-100">
                           <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="data_product.php">Data Produk</a>
                           <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="./data_pesanan.php">Data Pesanan</a>
-                          <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="laporan_penjualan.html">Laporan Penjualan</a>
+                          <a class="py-2 px-16 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="laporan_penjualan.php">Laporan Penjualan</a>
                       </div>
                       
                   </div>
-          </nav>
-
-            <div class="absolute bottom-0 my-8">
+                  <div class="absolute bottom-0 my-8">
                 <a class="flex items-center py-2 px-8 text-gray-700 hover:text-gray-600" href="#">
                     <img class="h-6 w-6 rounded-full mr-3 object-cover" src="https://lh3.googleusercontent.com/a-/AOh14Gi0DgItGDTATTFV6lPiVrqtja6RZ_qrY91zg42o-g" alt="avatar">
                     <span>Khatabwedaa</span>
                 </a>
             </div>
-        </div>
-       
-    </div>
-
- <!-- main content page -->
- <div class="w-full p-4 bg-gray-200">
-
-
-    <div class="px-4 sm:px-6 lg:px-8">
-
-
-    
-     <div class="mt-8 flow-root fullscreen">
-      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <table class="w-full divide-y divide-gray-300">
-                <thead>
-                  <tr class="border-b-2 border-slate-500">
-                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm front-semibold text-black sm:pl-0">Tanggal</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Id</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Nama</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Jumlah Barang</th>
-                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                      <span class="sr-only">Edit</span>
-                    </th>
-                    <th scope="col" class="px-1 py-3"></th>
-                  </tr>
-                </thead>
-                <tbody class="">
-                  <tbody class="">
-                  <tr>
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">23-12-2023</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">BHN-0001</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">Bahan 1</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">15</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
-                      <a href="#" class="text-black hover:text-yellow-500">Edit<span class="sr-only">, Najib Ahmed</span></a>
-                      <a href="#" class="text-black hover:text-red-500">Delete<span class="sr-only">, Najib Ahmed</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">23-15-2023</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">BHN-0002</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">Bahan 2</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">125</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
-                      <a href="#" class="text-black hover:text-yellow-500">Edit<span class="sr-only">, Najib Ahmed</span></a>
-                      <a href="#" class="text-black hover:text-red-500">Delete<span class="sr-only">, Najib Ahmed</span></a>
-                    </td>
-                  </tr>
-                </tbody> 
-              </table>
-    
-
-        </div>
-
-
-
-         </div>
-      </div>
-    </div> 
-
-
-</div>
-</main>
-
-<script>
-    document.addEventListener("alpine:init", () => {
-        Alpine.data("layout", () => ({
-            profileOpen: false,
-            asideOpen: true,
-        }));
-    });
-</script>
-<!--dashboard selesai-->
-</body>
-</html>
+          </nav>

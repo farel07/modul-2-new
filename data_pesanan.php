@@ -1,18 +1,3 @@
-<?php 
-
-require 'config.php';
-session_start();
-
-if(!isset($_SESSION['login'])){
-     header('Location: login.php');
-      die;
- }
-
- $produksi = ambilData("SELECT produksi.id, produksi.produk_id, produksi.tanggal, produksi.jumlah_bahan, produksi.jumlah_produksi, produk.nama_produk FROM produksi INNER JOIN produk ON produksi.produk_id = produk.id");
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,9 +30,9 @@ if(!isset($_SESSION['login'])){
 
     </header> -->
 
-   <!-- Navbar -->
-   <?php include('navbar.php') ?>
-   <!-- End Navbar -->
+     <!-- Navbar -->
+     <?php include('navbar.php') ?>
+    <!-- End Navbar -->
       
 
     <div class="flex">
@@ -59,10 +44,9 @@ if(!isset($_SESSION['login'])){
 <div class="flex flex-col sm:flex-row sm:justify-around">
   <div class="w-64 h-screen bg-white">
       
-   <!-- Sidebar -->
-   <?php include('sidebar.php') ?>
+  <!-- Sidebar -->
+  <?php include('sidebar.php') ?>
     <!-- Sidebar End -->
-       
   </div>
  
 </div>
@@ -74,54 +58,37 @@ if(!isset($_SESSION['login'])){
     <div class="px-4 sm:px-6 lg:px-8">
 
 
-        <div class="mt-5 mb-0 ">
-          <button type="button" class="block text-1x1 rounded-md bg-balck px-3 py-2 text-center text-sm font-semibold text-black shadow-sm hover:text-white hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black" onclick="window.location.href = './tambah_produksi.php';">Tambah Hasil Produksi</button>
-        </div>
     
      <div class="mt-8 flow-root fullscreen">
       <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-
-
-        <?php 
-                
-                if(isset($_SESSION['flash_message'])){
-
-
-                  echo $_SESSION['flash_message'];
-        
-                  unset($_SESSION['flash_message']);
-                }
-                
-                ?>
-
-
             <table class="w-full divide-y divide-gray-300">
                 <thead>
                   <tr class="border-b-2 border-slate-500">
                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm front-semibold text-black sm:pl-0">Tanggal</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Id Produk</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Nama Produk</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Jumlah Produksi</th>
-                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                      <span class="sr-only">Edit</span>
-                    </th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Id</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Nama</th>
                     <th scope="col" class="px-1 py-3"></th>
                   </tr>
                 </thead>
                 <tbody class="">
                   <tbody class="">
-                    <?php foreach($produksi as $p) : ?>
                   <tr>
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0"><?= $p['tanggal']; ?></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">PD-<?= $p['produk_id'] ?></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $p['nama_produk']; ?></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $p['jumlah_produksi']; ?></td>
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">23-12-2023</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">ORD-0001</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">Muhaimin</td>
                     <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
-                      <a href="hapusProduksi.php?id=<?= $p["id"] ?>" class="text-black hover:text-red-500">Delete<span class="sr-only">, Najib Ahmed</span></a>
+                      <a href="#" class="text-black hover:text-blue-500">Detail<span class="sr-only">, Najib Ahmed</span></a>
                     </td>
                   </tr>
-                  <?php endforeach; ?>
+                  <tr>
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">23-12-2023</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">ORD-0002</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">Rudi Saputra</td>
+                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
+                      <a href="#" class="text-black hover:text-blue-500">Detail<span class="sr-only">, Najib Ahmed</span></a>
+                    </td>
+                  </tr>
                 </tbody> 
               </table>
     
