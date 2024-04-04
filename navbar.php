@@ -1,3 +1,9 @@
+<?php 
+
+// session_start();
+
+?>
+
 <nav class="bg-purple-700">
         <div class="max-w-7xl">
           <div class=" flex h-16 items-center">
@@ -13,8 +19,15 @@
               <a href="./index.php" class=" text-white hover:bg-gray-700 rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
               <a href="./list_produk.php" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Product</a>
               <a href="./dashboard.php" class="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
+              <?php if(isset($_SESSION['login'])) { ?>
+
               <a href="logout.php" class="bg-red-600 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</a>
 
+                <?php } else { ?>
+
+              <a href="login.php" class="bg-green-600 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Login</a>
+
+                  <?php } ?>
               </div>
                      
                 </div>
