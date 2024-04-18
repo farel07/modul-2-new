@@ -2,10 +2,15 @@
 
 require 'config.php';
 session_start();
-
 if(!isset($_SESSION['login'])){
      header('Location: login.php');
       die;
+ }
+
+
+ if( $_SESSION['user']['role_id'] != 1){
+    header('Location: index.php');
+    die;
  }
 
 ?>
@@ -68,7 +73,7 @@ if(!isset($_SESSION['login'])){
  <!-- main content page -->
  <div class="w-full p-4 bg-gray-200">
 
-  <h2 class="font-light text-3xl">Selamat Datang <?= $_SESSION['name']; ?>!</h2>
+  <h2 class="font-light text-3xl">Selamat Datang <?= $_SESSION['user']['name']; ?>!</h2>
 
 </div>
 </main>

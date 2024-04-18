@@ -22,11 +22,14 @@ if(isset($_POST["submit"])){
     if (password_verify($password, $akun['password'])) { 
      
       $_SESSION['login'] = true;
-      $_SESSION['name'] = $akun['name'];
+      $_SESSION['user'] = $akun;
 
-      header('Location: dashboard.php');
-      die;
-   
+      if($akun['role_id'] == 1){
+        header('Location: dashboard.php');
+      } else if($akun['role_id'] == 2){
+        header('Location: index.php');
+      }
+        die;
     } 
   } 
 

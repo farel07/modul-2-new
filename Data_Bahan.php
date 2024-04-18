@@ -8,6 +8,13 @@ if(!isset($_SESSION['login'])){
    die;
 }
 
+
+if( $_SESSION['user']['role_id'] != 1){
+ header('Location: index.php');
+ die;
+}
+
+
 $data = ambilData("SELECT * FROM persediaan");
 
 ?>

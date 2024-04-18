@@ -4,11 +4,24 @@ require 'config.php';
 session_start();
 
 if(!isset($_SESSION['login'])){
-     header('Location: login.php');
-      die;
- }
+  header('Location: login.php');
+   die;
+}
+
+
+if( $_SESSION['user']['role_id'] != 1){
+ header('Location: index.php');
+ die;
+}
+
 
  if(isset($_POST['submit'])){
+
+  // if(isset($_FILES['foto'])){
+  //   echo "ada";
+  // } else {
+  //   echo "gada";
+  // } die;
   
   if(tambahProduk($_POST) > 0){
 
@@ -169,11 +182,11 @@ if(!isset($_SESSION['login'])){
 </div>
 
 <!-- image product -->
-<!-- <label for="product_image" class="sr-only">Image</label>
+<label for="product_image" class="sr-only">Image</label>
 
 <div class="relative">
-  <input required="" type="file" name="product_image" accept="image/png, image/gif, image/jpeg" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan gambar">
-</div> -->
+  <input required="" type="file" name="foto" accept="image/png, image/jpg, image/jpeg" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan gambar">
+</div>
 
 <!-- submit -->
 <div class="flex items-center justify-start">

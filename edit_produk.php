@@ -4,9 +4,16 @@ require 'config.php';
 session_start();
 
 if(!isset($_SESSION['login'])){
-     header('Location: login.php');
-      die;
- }
+  header('Location: login.php');
+   die;
+}
+
+
+if( $_SESSION['user']['role_id'] != 1){
+ header('Location: index.php');
+ die;
+}
+
 
  $id = $_GET['id'];
 

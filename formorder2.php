@@ -1,3 +1,19 @@
+<?php 
+
+require 'config.php';
+session_start();
+if(!isset($_SESSION['login'])){
+     header('Location: login.php');
+      die;
+ }
+if(!isset($_POST['shipping_method'])){
+    header('Location: chart.php');
+    
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html class="border-l" lang="en">
 <head>
@@ -71,8 +87,8 @@
     </header>
     <div class="h-screen grid grid-cols-2">
         <div class="lg:col-span-2 col-span-3 bg-indigo-50 space-y-8 px-12">
-            <div class="rounded-md mb-10">
-                <form id="payment-form" method="POST" action="">
+            <div class="rounded-md mb-2">
+                <form id="payment-form" method="POST" action="checkout.php">
                     <section>
                         <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2">Shipping & Billing Information</h2>
                         <fieldset class="mb-3 bg-white shadow-lg rounded text-gray-600">
@@ -86,27 +102,42 @@
                             </label>
                             <label class="flex border-b border-gray-200 h-12 py-3 items-center">
                                 <span class="text-right px-2">Number</span>
-                                <input name="address" class="focus:outline-none px-3" placeholder="Your Address">
+                                <input name="number" class="focus:outline-none px-3" placeholder="Your Number">
                             </label>
                             <label class="flex border-b border-gray-200 h-12 py-3 items-center">
                                 <span class="text-right px-2">Address</span>
-                                <input name="city" class="focus:outline-none px-3" placeholder="Surabaya">
+                                <input name="adress" class="focus:outline-none px-3" placeholder="City & Adress">
                             </label>
             <div class="rounded-md">
                 <section>
                     <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2 mx-4">Payment Information</h2>
                     <fieldset class="mb-3 bg-white shadow-lg rounded text-gray-600">
                         <label class="flex border-b border-gray-200 h-12 py-3 items-center">
-                            <span class="text-right px-2">Card</span>
-                            <input name="card" class="focus:outline-none px-3 w-full" placeholder="Card number MM/YY CVC" required="">
+                            <span class="text-right px-2">Method</span>
+                            <select id="underline_select" required name="payment_method" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                                <option value="bca">BCA</option>
+                                <option value="mandiri">Mandiri</option>
+                                <option value="dana">Dana</option>
+                                <option value="shopeepay">Shopeepay</option>
+                        </select>
                         </label>
                     </fieldset>
                 </section>
             </div>
         </div>
-        <a href="checkout.html" class=" submit-button  px-4 mt-10 py-3 rounded-full bg-purple-700 text-white focus:ring focus:outline-none w-full text-xl font-semibold transition-colors">
-            Pay Rp 117.000
-        </button></a>
+
+        <?php foreach($_POST['qty'] as $q) : ?>
+            <input type="hidden" name="qty[]" value="<?= $q ?>">
+            <?php endforeach; ?>
+
+            <input type="hidden" name="shipping_method" value="<?= $_POST['shipping_method'] ?>">
+        
+
+        <button type="submit" name="submit" class=" submit-button px-4 py-3 rounded-full bg-purple-700 text-white focus:ring focus:outline-none text-xl font-semibold transition-colors">
+            Bayar
+        </button>
+    </form>
+        
         </div>
     </div>
     

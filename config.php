@@ -30,8 +30,9 @@ function registrasiAkun($data){
     $username = $data['username'];
     $email = $data['email'];
     $password = password_hash($data['password'], PASSWORD_DEFAULT);
+    $role_id = 2;
 
-    mysqli_query($conn, "INSERT INTO account VALUES('', '$name', '$username', '$email', '$password', '1')");
+    mysqli_query($conn, "INSERT INTO account VALUES('', '$name', '$username', '$email', '$password', '$role_id')");
 
     $feedback = mysqli_affected_rows($conn);
     
@@ -79,6 +80,54 @@ function tambahBahan($data){
         return $feedback;
     
     }
+
+    function tambahOrder($data){
+        global $conn;
+
+        $tanggal = date("Y/m/d");
+        $name = $data['name'];
+        $email = $data['email'];
+        $nomer = $data['number'];
+        $adress = $data['adress'];
+        $shipping_method = $data['shipping_method'];
+        $harga = $data['harga'];
+        $status = 0;
+     
+        $upload_foto = upload();
+        if ( !$upload_foto ){
+            return false;
+        }
+        $foto = 'img/' . $upload_foto;
+
+        mysqli_query($conn, "INSERT INTO orders VALUES
+        ('', '$tanggal', '$name', '$email', '$nomer', '$adress', '$shipping_method', '$harga', '$status', '$foto');
+        ");
+
+        $feedback = mysqli_affected_rows($conn);
+            
+        return $feedback;
+    }
+
+    function tambahDetailOrder($data){
+        global $conn;
+
+        $order_id = $data['order_id'];
+        $produk_id = $data['produk_id'];
+        $qty = $data['qty'];
+
+        $i = 0;
+        foreach($produk_id as $p){
+            mysqli_query($conn, "INSERT INTO detail_order VALUES
+            ('$order_id', '$p', '$qty[$i]')
+            ");
+            $i++;
+        }
+
+        $feedback = mysqli_affected_rows($conn);
+            
+        return $feedback;
+
+    }
     
     function tambahProduk($data){
 
@@ -91,17 +140,72 @@ function tambahBahan($data){
         $stok = $data['stok'];
         $produk_terjual = $data['produk_terjual'];
         $deskripsi = $data['deskripsi'];
+        $upload_foto = upload();
+        if ( !$upload_foto ){
+            return false;
+        }
+        $foto = 'img/' . $upload_foto;
 
     
         // query data
         mysqli_query($conn, "INSERT INTO produk VALUES
-        ('', '$tanggal', '$nama_produk', '$harga', '$stok', '$produk_terjual', '$deskripsi', '')
+        ('', '$tanggal', '$nama_produk', '$harga', '$stok', '$produk_terjual', '$deskripsi', '$foto')
         ");
     
         $feedback = mysqli_affected_rows($conn);
     
         return $feedback;
 
+    }
+
+    function upload(){
+
+        $namaFile = $_FILES['foto']['name'];
+        $ukuranFile = $_FILES['foto']['size'];
+        $error = $_FILES['foto']['error'];
+        $tmpFile = $_FILES['foto']['tmp_name'];
+      
+    
+        // cek apakah tidak ada gambar yang diupload
+       if( $error === 4 ){
+            echo "<script>
+                alert('gambar harus diisi!')
+            </script>";
+            return false;
+    }
+    
+        // cek apakah yang diupload oleh user adalah file gambar
+        $eksGambarValid = ['jpg','png','jpeg'];
+        $eksGambar = explode('.',$namaFile);
+        $eksGambar = strtolower(end($eksGambar));
+    
+        // jika yang diupload bukan gambar
+        if ( !in_array($eksGambar, $eksGambarValid) ){
+    
+            echo "<script>
+            alert('yang anda upload bukan gambar!')
+        </script>";
+        return false;
+    
+        }
+    
+        // jika ukuran gambar terlalu besar
+        else if( $ukuranFile > 2500000 ){
+            echo "<script>
+            alert('gambar yang anda upload ukuran nya terlalu besar!')
+        </script>";
+        return false;
+        }
+    
+        // ubah nama file
+        $namaBaru = uniqid();
+        $namaBaru.='.';
+        $namaBaru.=$eksGambar;
+    
+        // ketika lolos seleksi
+        move_uploaded_file($tmpFile,'img/'.$namaBaru);
+        return $namaBaru;
+    
     }
 
     function tambahProduksi($data){
