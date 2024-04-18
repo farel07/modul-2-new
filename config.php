@@ -92,7 +92,7 @@ function tambahBahan($data){
         $shipping_method = $data['shipping_method'];
         $harga = $data['harga'];
         $status = 0;
-     
+        
         $upload_foto = upload();
         if ( !$upload_foto ){
             return false;
@@ -282,6 +282,15 @@ function tambahBahan($data){
         return $feedback;
     }
 
+    function editStatusOrder($id, $status){
+        global $conn;
+
+        mysqli_query($conn, "UPDATE orders SET status = '$status' WHERE id = $id");
+
+        $feedback = mysqli_affected_rows($conn);
+        return $feedback;
+    }
+
     function hapusBahan($id){
 
         global $conn;
@@ -294,6 +303,14 @@ function tambahBahan($data){
 
         global $conn;
         mysqli_query($conn,"DELETE FROM produk WHERE id = $id");
+        return mysqli_affected_rows($conn);
+    
+    }
+
+    function hapsDataPesanan($id){
+
+        global $conn;
+        mysqli_query($conn,"DELETE FROM orders WHERE id = $id");
         return mysqli_affected_rows($conn);
     
     }

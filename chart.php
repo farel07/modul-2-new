@@ -6,12 +6,19 @@ if(!isset($_SESSION['login'])){
      die;
 }
 
+
+if(!isset($_SESSION['cart'])){
+    $_SESSION['cart'] = [];
+};
+
 $i = 0;
 foreach($_SESSION['cart'] as $c){
     $produk[] = ambilData("SELECT * FROM produk WHERE id = $c")[0];
     $produk[$i]['cart_index'] = $c;
     $i++;
 }
+
+
 
 
 function set_subtotal(){
@@ -182,7 +189,7 @@ function format_rupiah(nStr) {
                             </select>
                     </div>
                     
-                    <button class="flex items-center text-gray-700 text-sm font-medium rounded hover:underline focus:outline-none">
+                                <button class="flex items-center text-gray-700 text-sm font-medium rounded hover:underline focus:outline-none">
                     <a href="list_produk.php">← Batal</a>
                     </button>
 

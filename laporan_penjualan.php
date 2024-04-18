@@ -1,3 +1,33 @@
+<?php 
+
+require 'config.php';
+session_start();
+
+if(!isset($_SESSION['login'])){
+  header('Location: login.php');
+   die;
+}
+
+
+if( $_SESSION['user']['role_id'] != 1){
+ header('Location: index.php');
+ die;
+}
+
+$semua_produk_pesanan = ambilData("SELECT * FROM detail_order");
+
+// orders.id, orders.tanggal, orders.name, orders.number, orders.adress, orders.email, orders.harga, orders.shipping_method, orders.foto, produk.nama_produk FROM ((detail_order INNER JOIN orders ON orders.id = detail_order.produk_id)
+//   INNER JOIN produk ON produk.id = detail_order.produk_id) 
+
+foreach($semua_produk_pesanan as $spp){
+  $produk_id = $spp['produk_id'];
+  $order_id = $spp['order_id'];
+  $produk_pesanan[] = ambilData("SELECT * FROM ((detail_order INNER JOIN produk ON detail_order.produk_id = produk.id) INNER JOIN orders ON detail_order.order_id = orders.id) WHERE produk_id = $produk_id AND order_id = $order_id"); 
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +84,6 @@
                       <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Email</th>
                       <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nama Produk</th>
                       <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Metode Pengiriman</th>
-                      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Ongkir Harga</th>
                       <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Total Harga</th>
                       <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Bukti Pembayaran</th>
                       <th class="px-1 py-2"></th>
@@ -63,42 +92,24 @@
                 
                     <tbody class="divide-y divide-gray-200 text-center">
                       
+                    <?php foreach($produk_pesanan as $pp) : ?>
                       <tr>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">2090</td>
-                      <td class="whitespace-nowrap px-3 py-2 font-medium text-gray-900">2024-03-12</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">1</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">1</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">1</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">1</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">minuman segar</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">Regular</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">7000</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">100</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">7100</td>
+                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">ORD-<?= $pp[0]['order_id'] ?></td>
+                      <td class="whitespace-nowrap px-3 py-2 font-medium text-gray-900"><?= $pp[0]['tanggal']; ?></td>
+                      <td class="whitespace-nowrap px-3 py-2 text-gray-700"><?= $pp[0]['name']; ?></td>
+                      <td class="whitespace-nowrap px-3 py-2 text-gray-700"><?= $pp[0]['number']; ?></td>
+                      <td class="whitespace-nowrap px-3 py-2 text-gray-700"><?= $pp[0]['adress']; ?></td>
+                      <td class="whitespace-nowrap px-3 py-2 text-gray-700"><?= $pp[0]['email']; ?></td>
+                      <td class="whitespace-nowrap px-3 py-2 text-gray-700"><?= $pp[0]['nama_produk']; ?></td>
+                      <td class="whitespace-nowrap px-3 py-2 text-gray-700"><?= $pp[0]['shipping_method']; ?></td>
+                      <td class="whitespace-nowrap px-3 py-2 text-gray-700"><?= $pp[0]['harga']; ?></td>
                       <td class="whitespace-nowrap px-3 py-2 text-gray-700">
-                        <img class="h-48 w-full object-cover object-center" src="asset/IMG-65f051eea8d742.63763139.jpeg">
+                        <a href="<?= $pp[0]['foto'] ?>" target="_blank"><img class="h-48 w-full object-cover object-center" src="<?= $pp[0]['foto'] ?>"></a>
                       </td>
                       <td class="whitespace-nowrap px-3 py-2 "></td>
                       </tr>
                       
-                      
-                      <tr>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">2089</td>
-                      <td class="whitespace-nowrap px-3 py-2 font-medium text-gray-900">2024-03-12</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">hh</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">88</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">jhjh</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">yy</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">k</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">Regular</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">7000</td>
-                      <td class="whitespace-nowrap px-s3 py-2 text-gray-700">99</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">7099</td>
-                      <td class="whitespace-nowrap px-3 py-2 text-gray-700">
-                        <img class="h-48 w-full object-cover object-center" src="asset/IMG-65f03309dbe113.91251057.jpg">
-                      </td>
-                      <td class="whitespace-nowrap px-3 py-2 "></td>
-                      </tr>
+                      <?php endforeach; ?>
                       
                               
                     </tbody>

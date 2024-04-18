@@ -137,7 +137,7 @@ function rupiah($angka){
           <input type="hidden" name="number" value="<?= $_POST['number'] ?>">
           <input type="hidden" name="adress" value="<?php echo $_POST['adress'] ?>">
           <input type="hidden" name="shipping_method" value="<?= $_POST['shipping_method'] ?>">
-          <input type="hidden" name="harga" value="<?= rupiah(array_sum($harga_produk) + $harga_ongkir); ?>">
+          <input type="hidden" name="harga" value="<?= array_sum($harga_produk) + $harga_ongkir; ?>">
 
 
           <!-- tabel detail order -->

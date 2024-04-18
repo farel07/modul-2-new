@@ -1,3 +1,24 @@
+<?php 
+
+
+require 'config.php';
+session_start();
+
+if(!isset($_SESSION['login'])){
+  header('Location: login.php');
+   die;
+}
+
+
+if( $_SESSION['user']['role_id'] != 1){
+ header('Location: index.php');
+ die;
+}
+
+$pesanan = ambilData("SELECT * FROM orders WHERE status != 2");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,6 +75,17 @@
  <!-- main content page -->
  <div class="w-full p-4 bg-gray-200">
 
+ <?php 
+                
+                if(isset($_SESSION['flash_message'])){
+
+
+                  echo $_SESSION['flash_message'];
+        
+                  unset($_SESSION['flash_message']);
+                }
+                
+                ?>
 
     <div class="px-4 sm:px-6 lg:px-8">
 
@@ -68,27 +100,35 @@
                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm front-semibold text-black sm:pl-0">Tanggal</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Id</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Nama</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Total</th>
                     <th scope="col" class="px-1 py-3"></th>
                   </tr>
                 </thead>
                 <tbody class="">
                   <tbody class="">
-                  <tr>
+                    <?php foreach($pesanan as $p) : ?>
+
+                      <tr>
                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">23-12-2023</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">ORD-0001</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">Muhaimin</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">ORD-<?= $p['id'] ?></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $p['name']; ?></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $p['harga']; ?></td>
                     <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
-                      <a href="#" class="text-black hover:text-blue-500">Detail<span class="sr-only">, Najib Ahmed</span></a>
+                      <a href="hapus_data_pesanan.php?id=<?= $p['id'] ?>" class="text-black hover:text-red-500">Hapus<span class="sr-only">, Najib Ahmed</span></a>
+                    </td>
+                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
+                      <a href="detail_data_pesanan.php?id=<?= $p['id'] ?>" class="text-black hover:text-blue-500">Detail<span class="sr-only">, Najib Ahmed</span></a>
+                    </td>
+                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
+                      <?php if($p['status'] == 0) : ?>
+                        <a href="konfirmasi_pesanan.php?id=<?= $p['id'] ?>" onclick="return confirm('ingin konfirmasi pesanan?')" class="text-black hover:text-yellow-500">Konfirmasi<span class="sr-only">, Najib Ahmed</span></a>
+                        <?php elseif( $p['status'] == 1) : ?>
+                          <a href="selesai_pesanan.php?id=<?= $p['id'] ?>" onclick="return confirm('ingin selesaikan pesanan?')" class="text-black hover:text-green-500">Selesai<span class="sr-only">, Najib Ahmed</span></a>
+                          <?php endif; ?>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">23-12-2023</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">ORD-0002</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black">Rudi Saputra</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
-                      <a href="#" class="text-black hover:text-blue-500">Detail<span class="sr-only">, Najib Ahmed</span></a>
-                    </td>
-                  </tr>
+
+                      <?php endforeach; ?>
                 </tbody> 
               </table>
     
