@@ -40,7 +40,7 @@ if( $_SESSION['user']['role_id'] != 1){
     
 
     <!-- Navbar -->
-    <?php include('navbar.php') ?>
+    <?php include('navbar-admin.php') ?>
     <!-- End Navbar -->
 <!-- component -->
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>

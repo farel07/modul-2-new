@@ -52,7 +52,7 @@ $pesanan = ambilData("SELECT * FROM orders WHERE status != 2");
     </header> -->
 
      <!-- Navbar -->
-     <?php include('navbar.php') ?>
+     <?php include('navbar-admin.php') ?>
     <!-- End Navbar -->
       
 

@@ -85,10 +85,18 @@
                       </div>
                       
                   </div>
-                  <div class="absolute bottom-0 my-8">
-                <a class="flex items-center py-2 px-8 text-gray-700 hover:text-gray-600" href="#">
-                    <img class="h-6 w-6 rounded-full mr-3 object-cover" src="https://lh3.googleusercontent.com/a-/AOh14Gi0DgItGDTATTFV6lPiVrqtja6RZ_qrY91zg42o-g" alt="avatar">
-                    <span>Khatabwedaa</span>
+                  <div class="">
+                  <?php if(isset($_SESSION['login'])) { ?>
+
+
+                  </div>
+                  <div class="absolute bottom-0 my-8 mx-6"><a href="logout.php" class="bg-red-600 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</a>
+
+                        <?php } else { ?>
+
+                        <a href="login.php" class="bg-green-600 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Login</a>
+
+                        <?php } ?>
                 </a>
             </div>
           </nav>

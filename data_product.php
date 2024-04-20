@@ -41,7 +41,7 @@ if( $_SESSION['user']['role_id'] != 1){
     
 
      <!-- Navbar -->
-     <?php include('navbar.php') ?>
+     <?php include('navbar-admin.php') ?>
     <!-- End Navbar -->
 
         <!-- aside -->
