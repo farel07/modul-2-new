@@ -71,9 +71,9 @@ if(!isset($_SESSION['login'])){
     </div>
 
  <!-- main content page -->
- <div class="w-full p-4 bg-gray-200">
+ <div class="w-full p-4 bg-gray-200 flex items-center justify-center ">
 
-  <h2 class="font-light text-3xl">Selamat Datang <?= $_SESSION['user']['name']; ?>!</h2>
+  <h2 class="font-light text-3xl " >Selamat Datang <?= $_SESSION['user']['name']; ?>!</h2>
 
 </div>
 </main>
