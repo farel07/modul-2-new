@@ -1,10 +1,10 @@
 <?php 
 session_start();
 require 'config.php';
-if(!isset($_SESSION['login'])){
-    header('Location: login.php');
-     die;
-}
+// if(!isset($_SESSION['login'])){
+//     header('Location: login.php');
+//      die;
+// }
 
 
 if(!isset($_SESSION['cart'])){

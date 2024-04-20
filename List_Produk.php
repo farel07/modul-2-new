@@ -4,10 +4,10 @@ require 'config.php';
 $produk = ambilData("SELECT * FROM produk");
 
 if(isset($_POST['submit'])){
-    if(!isset($_SESSION['login'])){
-        header('Location: login.php');
-         die;
-    }
+    // if(!isset($_SESSION['login'])){
+    //     header('Location: login.php');
+    //      die;
+    // }
 
     $is_produk = false;
 
