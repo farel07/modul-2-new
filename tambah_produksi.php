@@ -145,7 +145,7 @@ if(isset($_POST['submit'])){
 
 
   <label for="countries" class="sr-only">Select an option</label>
-  <select id="countries" name="bahan_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
+  <select id="countries" name="produk_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
     <option selected>Choose product</option>
     <?php foreach($produk as $p): ?>
     <option value="<?= $p['id'] ?>"><?= $p['nama_produk']; ?></option>
@@ -160,7 +160,7 @@ if(isset($_POST['submit'])){
 </div>
 
   <label for="countries" class="sr-only">Select an option</label>
-  <select id="countries" name="produk_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
+  <select id="countries" name="bahan_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
     <option selected>Choose bahan</option>
     <?php foreach($bahan as $b): ?>
     <option value="<?= $b['id'] ?>"><?= $b['nama_persediaan']; ?></option>

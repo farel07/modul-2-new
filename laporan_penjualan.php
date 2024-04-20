@@ -91,7 +91,8 @@ foreach($semua_produk_pesanan as $spp){
                     </thead>
                 
                     <tbody class="divide-y divide-gray-200 text-center">
-                      
+
+                      <?php if(!empty($produk_pesanan)) : ?>
                     <?php foreach($produk_pesanan as $pp) : ?>
                       <tr>
                       <td class="whitespace-nowrap px-3 py-2 text-gray-700">ORD-<?= $pp[0]['order_id'] ?></td>
@@ -110,6 +111,7 @@ foreach($semua_produk_pesanan as $spp){
                       </tr>
                       
                       <?php endforeach; ?>
+                      <?php endif; ?>
                       
                               
                     </tbody>
