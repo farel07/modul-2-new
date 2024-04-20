@@ -125,6 +125,9 @@ if( $_SESSION['user']['role_id'] != 1){
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $p['nama_produk']; ?></td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $p['jumlah_produksi']; ?></td>
                     <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
+                      <a href="jual_produksi.php?id=<?= $p["id"] ?>" class="text-black hover:text-green-500">Jual<span class="sr-only">, Najib Ahmed</span></a>
+                    </td>
+                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
                       <a href="hapusProduksi.php?id=<?= $p["id"] ?>" class="text-black hover:text-red-500">Delete<span class="sr-only">, Najib Ahmed</span></a>
                     </td>
                   </tr>
