@@ -76,7 +76,7 @@ if( $_SESSION['user']['role_id'] != 1){
           <button type="button" class="block text-1x1 rounded-md bg-balck px-3 py-2 text-center text-sm font-semibold text-black shadow-sm hover:text-white hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black" onclick="redirectToPage()">Tambah Produk</button>
           <script>
             function redirectToPage() {
-                    window.location.href = "./tambah_data_produk.php";
+                    window.location.href = "./data_produksi.php";
                 }
           </script>
         </div>

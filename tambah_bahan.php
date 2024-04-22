@@ -63,50 +63,8 @@ if(isset($_POST['add_product'])){
 
     </header> -->
 
-    <nav class="bg-purple-700">
-        <div class="max-w-7xl">
-          <div class=" flex h-16 items-center">
+    <?php include('navbar-admin.php') ?>
 
-            <div class="flex flex-1 ">
-              <div class="flex flex-shrink-0">
-                <img class="h-8 w-auto" src="CareSelf.png" alt="Your Company" onclick="window.location.href = 'index.php';">
-              </div>
-            </div>
-
-            <div class="flex flex-2 space-x-4">
-   
-              <a href="./index.php" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
-              <a href="./list_produk.php" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Product</a>
-              <a href="./dashboard.php" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
-
-              </div>
-                     
-                </div>
-      
-                <!--
-                  Dropdown menu, show/hide based on menu state.
-      
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                -->
-                
-              </div>
-        </div>
-      
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <!-- <div class="sm:hidden" id="mobile-menu" >
-          <div class="space-y-1 px-2 pb-3 pt-2">
-            <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
-          </div>
-        </div> -->
-      </nav>
       
 
     <div class="flex">

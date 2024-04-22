@@ -158,6 +158,33 @@ function tambahBahan($data){
 
     }
 
+        function updateProduk($data){
+            global $conn;
+        
+            $harga = $data['harga'];
+            $deskripsi = $data['deskripsi'];
+            $id = $data['id'];
+            $stok = $data['stok'];
+
+            $upload_foto = upload();
+                if ( !$upload_foto ){
+                    return false;
+                }
+                $foto = 'img/' . $upload_foto;
+        
+            mysqli_query($conn, "UPDATE produk SET 
+                harga = '$harga',
+                deskripsi = '$deskripsi',
+                stok = '$stok',
+                sts = '1',
+                foto = '$foto' WHERE id = $id
+            ");
+        
+            $feedback = mysqli_affected_rows($conn);
+                
+            return $feedback;
+        }
+
     function upload(){
 
         $namaFile = $_FILES['foto']['name'];
@@ -208,28 +235,46 @@ function tambahBahan($data){
     
     }
 
+    // function tambahProduksi($data){
+    //     global $conn;
+
+    //     $produk_id = $data['produk_id'];
+    //     $tanggal = date("Y/m/d");
+    //     $bahan_id = $data['bahan_id'];
+    //     $jumlah_bahan = $data['jumlah_bahan'];
+    //     $jumlah_produksi = $data['jumlah_produksi'];
+
+    //      // query data
+    //      mysqli_query($conn, "INSERT INTO produksi VALUES
+    //      ('','$produk_id', '$tanggal', '$bahan_id', '$jumlah_bahan', '$jumlah_produksi', '0')
+    //      ");
+
+    //     //  $produk = ambilData("SELECT * FROM produk WHERE id=$produk_id")[0];
+    //     //  $stok = $produk['stok'] + $jumlah_produksi;
+    
+    //     //  mysqli_query($conn, "UPDATE produk SET stok = '$stok' WHERE id=$produk_id");
+
+    //     $feedback = mysqli_affected_rows($conn);
+            
+    //     return $feedback;
+    // }
+
     function tambahProduksi($data){
         global $conn;
 
-        $produk_id = $data['produk_id'];
-        $tanggal = date("Y/m/d");
-        $bahan_id = $data['bahan_id'];
-        $jumlah_bahan = $data['jumlah_bahan'];
-        $jumlah_produksi = $data['jumlah_produksi'];
+    $bahan_id = $data['bahan_id'];
+    $tanggal = date('Y/m/d');
+    $nama = $data['name'];
+    $jumlah_bahan = $data['jumlah_bahan'];
+    $jumlah_keluar = $data['jumlah_keluar'] += $data['jumlah_bahan'];
+    $stok = $data['stok'] -= $data['jumlah_bahan'];
 
-         // query data
-         mysqli_query($conn, "INSERT INTO produksi VALUES
-         ('','$produk_id', '$tanggal', '$bahan_id', '$jumlah_bahan', '$jumlah_produksi')
-         ");
+    mysqli_query($conn, "INSERT INTO produk VALUES('', '$tanggal', '$nama', '$bahan_id', '$jumlah_bahan', '', '', '', '', '', '0')");
+    mysqli_query($conn, "UPDATE persediaan SET jumlah_keluar = '$jumlah_keluar', stok = '$stok' WHERE id = $bahan_id");
 
-        //  $produk = ambilData("SELECT * FROM produk WHERE id=$produk_id")[0];
-        //  $stok = $produk['stok'] + $jumlah_produksi;
+    $feedback = mysqli_affected_rows($conn);
     
-        //  mysqli_query($conn, "UPDATE produk SET stok = '$stok' WHERE id=$produk_id");
-
-        $feedback = mysqli_affected_rows($conn);
-            
-        return $feedback;
+    return $feedback;
     }
 
 
@@ -246,6 +291,8 @@ function tambahBahan($data){
 
         
         mysqli_query($conn, "UPDATE produk SET stok = '$stok' WHERE id=$produk_id"); 
+        mysqli_query($conn, "UPDATE produksi SET sts = '1' WHERE id=$id"); 
+        
 
         $feedback = mysqli_affected_rows($conn);
             
@@ -340,11 +387,13 @@ function tambahBahan($data){
 
         global $conn;
         
-        $produksi = ambilData("SELECT * FROM produksi WHERE id=$id")[0];
-        mysqli_query($conn,"DELETE FROM produksi WHERE id = $id");
+        // $produksi = ambilData("SELECT * FROM produksi WHERE id=$id")[0];
+        // mysqli_query($conn,"DELETE FROM produksi WHERE id = $id");
 
-        $produk_id = $produksi['produk_id']; 
-         $produk = ambilData("SELECT * FROM produk WHERE id=$produk_id")[0];
+        $produk_id = $id;
+        //  $produk = ambilData("SELECT * FROM produk WHERE id=$produk_id")[0];
+        mysqli_query($conn,"DELETE FROM produk WHERE id = $id");
+
         //  $stok = $produk['stok'] - $produksi['jumlah_produksi'];
     
         //  mysqli_query($conn, "UPDATE produk SET stok = $stok WHERE id=$produk_id");

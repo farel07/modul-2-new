@@ -78,50 +78,8 @@ if(isset($_POST['submit'])){
 
     </header> -->
 
-    <nav class="bg-purple-700">
-        <div class="max-w-7xl">
-          <div class=" flex h-16 items-center">
+    <?php include('navbar-admin.php') ?>
 
-            <div class="flex flex-1 ">
-              <div class="flex flex-shrink-0">
-                <img class="h-8 w-auto" src="CareSelf.png" alt="Your Company" onclick="window.location.href = 'index.php';">
-              </div>
-            </div>
-
-            <div class="flex flex-2 space-x-4">
-   
-              <a href="./index.php" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
-              <a href="./list_produk.php" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Product</a>
-              <a href="./dashboard.php" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
-
-              </div>
-                     
-                </div>
-      
-                <!--
-                  Dropdown menu, show/hide based on menu state.
-      
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                -->
-                
-              </div>
-        </div>
-      
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <!-- <div class="sm:hidden" id="mobile-menu" >
-          <div class="space-y-1 px-2 pb-3 pt-2">
-            <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
-          </div>
-        </div> -->
-      </nav>
       
 
     <div class="flex">
@@ -140,56 +98,52 @@ if(isset($_POST['submit'])){
   </div>
 
 
-  
-<form action="" method="post" enctype="multipart/form-data" class="space-y-4">
+  <table class="w-full divide-y divide-gray-300">
+                <thead>
+                  <tr class="border-b-2 border-slate-500">
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm front-semibold text-black sm:pl-0">Bahan</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Nama</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Jumlah Bahan</th>
+                </thead>
+                <tbody class="">
+                  <tbody class="">
 
+                    
+                  <?php foreach($bahan as $b): ?>
 
-  <label for="countries" class="sr-only">Select an option</label>
-  <select id="countries" name="produk_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
-    <option selected>Choose product</option>
-    <?php foreach($produk as $p): ?>
-    <option value="<?= $p['id'] ?>"><?= $p['nama_produk']; ?></option>
-    <?php endforeach; ?>
-  </select>
+    <form action="" method="post">
 
-  <!-- stock product -->
-<label for="product_stock" class="sr-only">Jumlah Produksi</label>
+        <tr>  
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0"><?= $b['nama_persediaan']; ?></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><div class="relative">
+  <input required="" type="text" name="name" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" >
+</div></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><div class="relative">
+  <input required="" type="text" name="jumlah_bahan" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
+</div></td>
 
-<div class="relative">
-  <input required="" type="number" name="jumlah_produksi" min="1" max="" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah produksi">
-</div>
+<input type="hidden" name="bahan_id" value="<?= $b['id'] ?>">
+<input type="hidden" name="stok" value="<?= $b['stok'] ?>">
+<input type="hidden" name="jumlah_keluar" value="<?= $b['jumlah_keluar'] ?>">
 
-  <label for="countries" class="sr-only">Select an option</label>
-  <select id="countries" name="bahan_id" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
-    <option selected>Choose bahan</option>
-    <?php foreach($bahan as $b): ?>
-    <option value="<?= $b['id'] ?>"><?= $b['nama_persediaan']; ?></option>
-    <?php endforeach; ?>
-  </select>
-
-    <!-- stock product -->
-<label for="product_stock" class="sr-only">Jumlah Bahan</label>
-
-<div class="relative">
-  <input required="" type="number" name="jumlah_bahan" min="1" max="" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Masukkan jumlah bahan">
-</div>
-
-
-
-<!-- submit -->
-<div class="flex items-center justify-start">
-    <input type="submit" name="submit" value="Tambah Produksi" class="rounded-lg bg-purple-700 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer mr-4">
-    
-    <button  class="rounded-lg bg-gray-400 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer" onclick="redirectToPage()"> Cancel </button>
-    <script>
-        function redirectToPage() {
-                        window.location.href = "./data_produksi.php";
-                    }
-    </script>
-    
-    </div>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><input type="submit" name="submit" value="Tambah Produksi" class="rounded-lg bg-purple-700 hover:bg-gray-700 px-5 py-3 text-sm font-medium text-white cursor-pointer mr-4"></td>
+              </tr>
 
 </form>
+
+<?php endforeach; ?>
+               
+
+
+                </tbody> 
+              </table>
+
+
+ 
+
+
+  
+
 
 </div>
 

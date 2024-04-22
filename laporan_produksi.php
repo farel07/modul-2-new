@@ -15,8 +15,9 @@ if( $_SESSION['user']['role_id'] != 1){
 }
 
 
- $produksi = ambilData("SELECT produksi.id, produksi.produk_id, produksi.tanggal, produksi.jumlah_bahan, produksi.jumlah_produksi, produk.nama_produk, persediaan.nama_persediaan FROM ((produksi INNER JOIN produk ON produksi.produk_id = produk.id) INNER JOIN persediaan ON produksi.bahan_id = persediaan.id);");
+//  $produksi = ambilData("SELECT produksi.id, produksi.produk_id, produksi.tanggal, produksi.jumlah_bahan, produksi.jumlah_produksi, produk.nama_produk, persediaan.nama_persediaan FROM ((produksi INNER JOIN produk ON produksi.produk_id = produk.id) INNER JOIN persediaan ON produksi.bahan_id = persediaan.id) WHERE sts = '1';");
 
+$produksi = ambilData("SELECT *, produk.id as produk_id, produk.nama_produk as nama_produk, produk.stok as stok_produk FROM produk INNER JOIN persediaan ON persediaan.id = bahan_id");
 
 ?>
 
@@ -86,7 +87,7 @@ if( $_SESSION['user']['role_id'] != 1){
                   <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?= $p['nama_persediaan']; ?></td>
                   <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?= $p['jumlah_bahan']; ?></td>
                   <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?= $p['nama_produk']; ?></td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?= $p['jumlah_produksi']; ?></td>
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?= $p['stok_produk']; ?></td>
                   <td class="whitespace-nowrap px-4 py-2"></td>
                 </tr>
                 <?php endforeach; ?>

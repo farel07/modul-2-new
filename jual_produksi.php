@@ -20,7 +20,6 @@ $id = $_GET['id'];
 
 if(jualProduksi($id) > 0){
 
-    hapusProduksi($id);
 
     $_SESSION['flash_message'] = '<div class="p-4 mb-4 text-sm text-grey-800 rounded-lg bg-grey-50 dark:bg-green-200            dark:text-grey-400" role="alert">
     <span class="font-medium">Stok produk berhasil ditambahkan</span> </div>';
@@ -33,7 +32,6 @@ if(jualProduksi($id) > 0){
     echo mysqli_error($conn);
 
   }
-
   echo "
     <script>
         document.location.href = 'data_produksi.php';

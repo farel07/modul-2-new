@@ -15,7 +15,9 @@ if( $_SESSION['user']['role_id'] != 1){
 }
 
 
- $produksi = ambilData("SELECT produksi.id, produksi.produk_id, produksi.tanggal, produksi.jumlah_bahan, produksi.jumlah_produksi, produk.nama_produk FROM produksi INNER JOIN produk ON produksi.produk_id = produk.id");
+//  $produksi = ambilData("SELECT produksi.id, produksi.produk_id, produksi.tanggal, produksi.jumlah_bahan, produksi.jumlah_produksi, produk.nama_produk FROM produksi INNER JOIN produk ON produksi.produk_id = produk.id WHERE sts = 0");
+
+$produksi = ambilData("SELECT *, produk.id as produk_id, produk.nama_produk as nama_produk FROM produk INNER JOIN persediaan ON persediaan.id = bahan_id");
 
 ?>
 
@@ -109,7 +111,7 @@ if( $_SESSION['user']['role_id'] != 1){
                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm front-semibold text-black sm:pl-0">Tanggal</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Id Produk</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Nama Produk</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Jumlah Produksi</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Jumlah Bahan</th>
                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
                       <span class="sr-only">Edit</span>
                     </th>
@@ -123,12 +125,19 @@ if( $_SESSION['user']['role_id'] != 1){
                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0"><?= $p['tanggal']; ?></td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-black">PD-<?= $p['produk_id'] ?></td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $p['nama_produk']; ?></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $p['jumlah_produksi']; ?></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-black"><?= $p['jumlah_bahan']; ?></td>
                     <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
-                      <a href="jual_produksi.php?id=<?= $p["id"] ?>" class="text-black hover:text-green-500">Jual<span class="sr-only">, Najib Ahmed</span></a>
+
+                    <?php if($p['sts'] == 0) : ?>
+
+                      <a href="form_tambah_produk.php?id=<?= $p["produk_id"] ?>" class="text-black hover:text-green-500">Jual<span class="sr-only">, Najib Ahmed</span></a>
+                      <?php else : ?>
+                        <b>Sudah Dijual</b>
+                        <?php endif; ?>
+
                     </td>
                     <td class="whitespace-nowrap py-4 pl-3 pr-4 text-left space-x-3 text-sm font-medium sm:pr-0">
-                      <a href="hapusProduksi.php?id=<?= $p["id"] ?>" class="text-black hover:text-red-500">Delete<span class="sr-only">, Najib Ahmed</span></a>
+                      <a href="hapusProduksi.php?id=<?= $p["produk_id"] ?>" class="text-black hover:text-red-500">Delete<span class="sr-only">, Najib Ahmed</span></a>
                     </td>
                   </tr>
                   <?php endforeach; ?>
