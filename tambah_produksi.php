@@ -61,15 +61,8 @@ if(isset($_POST['submit'])){
 <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
 
 <!-- page -->
-<main class="min-h-screen w-full bg-white text-gray-700" x-data="layout">
-    <!-- header page -->
-    <!-- <header class="flex w-full items-center justify-between p-8  bg-gray-100 p-2" >
-        // logo 
-        <div class="flex items-center justify-center">
-            <a href="./index.php">
-            <img class="h-6" src="CareSelf.png" >
-        </a>
-        </div>
+<main class="min-h-screen w-full bg-gray-200 text-gray-700" x-data="layout">
+
 
         
         
@@ -90,20 +83,19 @@ if(isset($_POST['submit'])){
 
 
  <!-- main content page -->
- <div class="w-full p-4 bg-gray-200 h-screen">
-  <div class="max-w-lg mx-6 mx-auto" >
+ <div class="mx-auto p-4 h-screen">
+  <div class="w-auto overflow-auto max-h-96" >
 
     <div class="max-w-xs my-3">
   <h2 class="font-semibold text-2xl">Tambah Produksi</h2>
   </div>
-
-
-  <table class="w-full divide-y divide-gray-300">
+  
+  <table class="min-w-full divide-y divide-gray-300">
                 <thead>
                   <tr class="border-b-2 border-slate-500">
-                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm front-semibold text-black sm:pl-0">Bahan</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Nama</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Jumlah Bahan</th>
+                    <td scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm front-semibold text-black sm:pl-0">Bahan</td>
+                    <td scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Nama</td>
+                    <td scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-black">Jumlah Bahan</td>
                 </thead>
                 <tbody class="">
                   <tbody class="">
@@ -137,15 +129,8 @@ if(isset($_POST['submit'])){
 
                 </tbody> 
               </table>
-
-
- 
-
-
-  
-
-
 </div>
+
 
 
 </div>

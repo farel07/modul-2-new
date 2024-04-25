@@ -109,19 +109,19 @@ function rupiah($angka){
           <!-- kode pembayaran -->
           <div class="bg-gray-50 border border-gray-100 rounded-lg p-4 w-full shadow">
             <?php if($_POST['payment_method'] == 'bca') : ?>
-              <p>No Rekening A/N Budi Anjasmara:</p>
+              <p>No Rekening A/N Rachmad Fadillah:</p>
               <p class="font-bold text-xl">71092123991</p>
 
               <?php elseif($_POST['payment_method'] == 'mandiri') : ?>
-                <p>No Rekening A/N Budi Anjasmara:</p>
+                <p>No Rekening A/N Rachmad Fadillah:</p>
               <p class="font-bold text-xl">71092123991</p>
 
               <?php elseif($_POST['payment_method'] == 'shopeepay') : ?>
-                <p>No Telo A/N Budi Anjasmara:</p>
+                <p>No Telp A/N Rachmad Fadillah:</p>
               <p class="font-bold text-xl">08521345261</p>
 
               <?php elseif($_POST['payment_method'] == 'dana') : ?>
-                <p>No Telo A/N Budi Anjasmara:</p>
+                <p>No Telp A/N Rachmad Fadillah:</p>
               <p class="font-bold text-xl">08521345261</p>
 
                 <?php endif; ?>
